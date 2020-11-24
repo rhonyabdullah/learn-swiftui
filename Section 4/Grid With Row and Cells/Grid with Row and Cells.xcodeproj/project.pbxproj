@@ -11,6 +11,8 @@
 		CEF310C2256CB59B00B0A0D5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF310C1256CB59B00B0A0D5 /* ContentView.swift */; };
 		CEF310C4256CB59E00B0A0D5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEF310C3256CB59E00B0A0D5 /* Assets.xcassets */; };
 		CEF310C7256CB59E00B0A0D5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEF310C6256CB59E00B0A0D5 /* Preview Assets.xcassets */; };
+		CEF3110A256CBD4F00B0A0D5 /* Dish.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF31109256CBD4F00B0A0D5 /* Dish.swift */; };
+		CEF3110D256CC0AD00B0A0D5 /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF3110C256CC0AD00B0A0D5 /* ArrayExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +22,8 @@
 		CEF310C3256CB59E00B0A0D5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CEF310C6256CB59E00B0A0D5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CEF310C8256CB59E00B0A0D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CEF31109256CBD4F00B0A0D5 /* Dish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dish.swift; sourceTree = "<group>"; };
+		CEF3110C256CC0AD00B0A0D5 /* ArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +61,8 @@
 				CEF310C3256CB59E00B0A0D5 /* Assets.xcassets */,
 				CEF310C8256CB59E00B0A0D5 /* Info.plist */,
 				CEF310C5256CB59E00B0A0D5 /* Preview Content */,
+				CEF31109256CBD4F00B0A0D5 /* Dish.swift */,
+				CEF3110C256CC0AD00B0A0D5 /* ArrayExtension.swift */,
 			);
 			path = "Grid with Row and Cells";
 			sourceTree = "<group>";
@@ -138,8 +144,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEF3110A256CBD4F00B0A0D5 /* Dish.swift in Sources */,
 				CEF310C2256CB59B00B0A0D5 /* ContentView.swift in Sources */,
 				CEF310C0256CB59B00B0A0D5 /* Grid_with_Row_and_CellsApp.swift in Sources */,
+				CEF3110D256CC0AD00B0A0D5 /* ArrayExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

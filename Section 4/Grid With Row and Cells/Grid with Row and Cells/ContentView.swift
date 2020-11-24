@@ -8,15 +8,17 @@
 import SwiftUI
 
 struct ContentView: View {
+    let dishes = Dish.all()
     var body: some View {
-        List {
-            ForEach(0 ..< 5) { _ in
+        let chunked = dishes.chunked(into: 2)
+
+        return List {
+            ForEach(0 ..< chunked.count) { index in
                 HStack {
-                    ForEach(0 ..< 2) { subIdx in
-                        Image("image")
+                    ForEach(chunked[index]) { dish in
+                        Image(dish.imageUrl)
                             .resizable()
                             .scaledToFit()
-                            .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
                     }
                 }
             }
