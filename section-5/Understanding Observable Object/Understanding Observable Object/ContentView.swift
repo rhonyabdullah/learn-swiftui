@@ -19,9 +19,12 @@ struct ContentView: View {
                 .padding()
             Text("Score: \(userSettings.score)")
                 .font(.largeTitle)
-            Button("Increse Score") {
+            Button("Increase Score") {
                 self.userSettings.score += 1
-            }
+            }.padding()
+            
+            //This will be confusing after having multiple sub-view
+            FancyScoreView(score: self.$userSettings.score)
         }
     }
 }
