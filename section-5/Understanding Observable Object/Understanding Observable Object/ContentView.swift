@@ -10,11 +10,19 @@ import SwiftUI
 struct ContentView: View {
     
     @ObservedObject var fancyTimer = FancyTimer()
+    @ObservedObject var userSettings = UserSettings()
     
     var body: some View {
-        Text("\(fancyTimer.value)")
-            .font(.largeTitle)
-            .padding()
+        VStack {
+            Text("Timer: \(fancyTimer.value)")
+                .font(.largeTitle)
+                .padding()
+            Text("Score: \(userSettings.score)")
+                .font(.largeTitle)
+            Button("Increse Score") {
+                self.userSettings.score += 1
+            }
+        }
     }
 }
 

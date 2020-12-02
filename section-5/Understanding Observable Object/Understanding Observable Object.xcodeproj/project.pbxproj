@@ -12,6 +12,7 @@
 		CEF58816257765210066C1BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEF58815257765210066C1BA /* Assets.xcassets */; };
 		CEF58819257765210066C1BA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEF58818257765210066C1BA /* Preview Assets.xcassets */; };
 		CEF58822257765350066C1BA /* FancyTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF58821257765350066C1BA /* FancyTimer.swift */; };
+		CEF58825257767E20066C1BA /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF58824257767E20066C1BA /* UserSettings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		CEF58818257765210066C1BA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CEF5881A257765210066C1BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CEF58821257765350066C1BA /* FancyTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FancyTimer.swift; sourceTree = "<group>"; };
+		CEF58824257767E20066C1BA /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 				CEF5881A257765210066C1BA /* Info.plist */,
 				CEF58817257765210066C1BA /* Preview Content */,
 				CEF58821257765350066C1BA /* FancyTimer.swift */,
+				CEF58824257767E20066C1BA /* UserSettings.swift */,
 			);
 			path = "Understanding Observable Object";
 			sourceTree = "<group>";
@@ -142,6 +145,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEF588142577651F0066C1BA /* ContentView.swift in Sources */,
+				CEF58825257767E20066C1BA /* UserSettings.swift in Sources */,
 				CEF588122577651F0066C1BA /* Understanding_Observable_ObjectApp.swift in Sources */,
 				CEF58822257765350066C1BA /* FancyTimer.swift in Sources */,
 			);
