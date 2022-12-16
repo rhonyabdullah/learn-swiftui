@@ -9,14 +9,33 @@ import SwiftUI
 
 struct ContentView: View {
 
-    let hikes = Hike.all()
+    let animals = ["🐨", "🐰", "🐮", "🐯", "🐴", "🐔", "🦆"]
+    @State private var sliderValue: CGFloat = 1
+
     var body: some View {
         NavigationView {
-            List(hikes, id: \.name) { hike in
-                NavigationLink(destination: HikingDetails(hike: hike)) {
-                    HikeCell(hike: hike)
+            VStack {
+                Slider(value: $sliderValue, in: 1...8, step: 1)
+                Text(String(format: "%.0f", self.sliderValue))
+                    .font(.system(size: 20))
+                    .fontWeight(.bold)
+                    .padding()
+                    .foregroundColor(Color.yellow)
+                    .background(Color.blue)
+                    .foregroundColor(Color.white)
+                    .clipShape(Circle())
+
+                List(self.animals.chunks(size: Int(self.sliderValue)),
+                    id: \.self) { chunk in
+                    ForEach(chunk, id: \.self) { animal in
+                        HStack {
+                            Text(
+                                "count: \(chunk.count) \(animal)"
+                            )
+                        }
+                    }
                 }
-            }.navigationBarTitle("Hikings")
+            }.navigationBarTitle("Animals")
         }
     }
 }
@@ -24,23 +43,5 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-    }
-}
-
-struct HikeCell: View {
-
-    var hike: Hike
-
-    var body: some View {
-        HStack {
-            Image(hike.imageURL)
-                .resizable()
-                .frame(width: 100, height: 100)
-                .cornerRadius(16)
-            VStack(alignment: .leading) {
-                Text(hike.name)
-                Text(String(format: "%.2f miles", hike.miles))
-            }
-        }
     }
 }
