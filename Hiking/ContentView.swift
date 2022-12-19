@@ -9,37 +9,35 @@ import SwiftUI
 
 struct ContentView: View {
 
-    var models = Dish.all()
-    @State private var isSpicy = false
+    let episode = Episode(name: "Mackbreak Weekly", track: "WWDC 2022")
+
+    @State private var isPlaying: Bool = false
 
     var body: some View {
         VStack {
-            Toggle(isOn: $isSpicy) {
-                Text("Spicy")
-                    .font(.title2)
-            }
-            List {
-                ForEach(models.filter { $0.isSpicy == self.isSpicy }) { model in
-                    HStack {
-                        Image(model.imageURL)
-                            .resizable()
-                            .frame(width: 100, height: 100)
+            Text(episode.name)
+                .font(.title)
+                .foregroundColor(isPlaying ? .green : .black)
 
-                        Text(model.name)
-                            .font(.title2)
-                            .lineLimit(2)
+            Text(episode.track)
+                .font(.title2)
+                .foregroundColor(.secondary)
 
-                        Spacer()
-
-                        if(model.isSpicy) {
-                            Image("spicy-icon")
-                                .resizable()
-                                .frame(width: 35, height: 35)
-                        }
-                    }
-                }
-            }
+            PlayButton(isPlaying: $isPlaying)
         }
+    }
+}
+
+struct PlayButton: View {
+
+    @Binding internal var isPlaying: Bool
+
+    var body: some View {
+        Button(action: {
+            isPlaying.toggle()
+        }) {
+            Text("Play")
+        }.padding(8)
     }
 }
 
