@@ -9,35 +9,17 @@ import SwiftUI
 
 struct ContentView: View {
 
-    let episode = Episode(name: "Mackbreak Weekly", track: "WWDC 2022")
-
-    @State private var isPlaying: Bool = false
+    @ObservedObject var settings = UserSettings()
 
     var body: some View {
         VStack {
-            Text(episode.name)
-                .font(.title)
-                .foregroundColor(isPlaying ? .green : .black)
+            Text("Score: \(settings.score)")
+                .font(.largeTitle)
 
-            Text(episode.track)
-                .font(.title2)
-                .foregroundColor(.secondary)
-
-            PlayButton(isPlaying: $isPlaying)
+            Button("Increment score") {
+                settings.increment()
+            }.padding(4)
         }
-    }
-}
-
-struct PlayButton: View {
-
-    @Binding internal var isPlaying: Bool
-
-    var body: some View {
-        Button(action: {
-            isPlaying.toggle()
-        }) {
-            Text("Play")
-        }.padding(8)
     }
 }
 
