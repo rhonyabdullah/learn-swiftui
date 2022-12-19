@@ -7,7 +7,7 @@
 
 import Foundation
 
-class UserSettings: ObservableObject {
+final class UserSettings: ObservableObject {
     @Published var score: Int = 0
 
     func increment() {

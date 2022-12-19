@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
 
-    @ObservedObject var settings = UserSettings()
+    @EnvironmentObject var settings: UserSettings
 
     var body: some View {
         VStack {
@@ -19,6 +19,8 @@ struct ContentView: View {
             Button("Increment score") {
                 settings.increment()
             }.padding(4)
+            
+            FancyScoreView()
         }
     }
 }
@@ -26,7 +28,7 @@ struct ContentView: View {
 #if DEBUG
     struct ContentView_Previews: PreviewProvider {
         static var previews: some View {
-            ContentView()
+            ContentView().environmentObject(UserSettings())
         }
     }
 #endif

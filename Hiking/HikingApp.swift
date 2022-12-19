@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct HikingApp: App {
+    
+    @StateObject var settings = UserSettings()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(settings)
         }
     }
 }
