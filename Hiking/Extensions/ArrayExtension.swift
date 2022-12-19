@@ -8,12 +8,19 @@
 import Foundation
 
 extension Array {
+
+    func chunked(into size: Int) -> [[Element]] {
+        return stride(from: 0, to: count, by: size).map {
+            Array(self[$0..<Swift.min($0 + size, count)])
+        }
+    }
+
     func chunks(size: Int) -> [ArraySlice<Element>] {
 
         var chunks: [ArraySlice<Element>] = [ArraySlice<Element>]()
 
         for index in stride(from: 0, to: self.count, by: size) {
-            
+
             var chunk = ArraySlice<Element>()
             let end = index + size
             if end >= self.count {
@@ -32,37 +39,5 @@ extension Array {
 
         return chunks
     }
-    
-    //size: 2
-//    func chunks(size: Int) -> [ArraySlice<Element>] {
-//
-//        var chunks: [ArraySlice<Element>] = [ArraySlice<Element>]()
-//
-//        print("self.count: \(self.count) \n") //4
-//        for index in stride(from: 0, to: self.count, by: size) {
-//            var chunk = ArraySlice<Element>()
-//            print("index: \(index)")
-//            let end = index + size //2
-//            print("end: \(end) \n")
-//            if end >= self.count {
-//                print("end >= self.count \n")
-//                chunk = self[index..<self.count]
-//            } else {
-//                print("else \n")
-//                chunk = self[index..<end]
-//            }
-//            print("chunk: \(chunk) \n")
-//
-//            chunks.append(chunk)
-//
-////            if (end + 1) == self.count {
-////                print("end+1")
-////                let remainingChunk = self[end..<self.count]
-////                print("remainingChunk: \(remainingChunk)")
-////                chunks.append(remainingChunk)
-////            }
-//        }
-//
-//        return chunks
-//    }
+
 }

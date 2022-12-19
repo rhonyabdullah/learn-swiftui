@@ -9,39 +9,44 @@ import SwiftUI
 
 struct ContentView: View {
 
-    let animals = ["🐨", "🐰", "🐮", "🐯", "🐴", "🐔", "🦆"]
-    @State private var sliderValue: CGFloat = 1
+    var models = Dish.all()
+    @State private var isSpicy = false
 
     var body: some View {
-        NavigationView {
-            VStack {
-                Slider(value: $sliderValue, in: 1...8, step: 1)
-                Text(String(format: "%.0f", self.sliderValue))
-                    .font(.system(size: 20))
-                    .fontWeight(.bold)
-                    .padding()
-                    .foregroundColor(Color.yellow)
-                    .background(Color.blue)
-                    .foregroundColor(Color.white)
-                    .clipShape(Circle())
+        VStack {
+            Toggle(isOn: $isSpicy) {
+                Text("Spicy")
+                    .font(.title2)
+            }
+            List {
+                ForEach(models.filter { $0.isSpicy == self.isSpicy }) { model in
+                    HStack {
+                        Image(model.imageURL)
+                            .resizable()
+                            .frame(width: 100, height: 100)
 
-                List(self.animals.chunks(size: Int(self.sliderValue)),
-                    id: \.self) { chunk in
-                    ForEach(chunk, id: \.self) { animal in
-                        HStack {
-                            Text(
-                                "count: \(chunk.count) \(animal)"
-                            )
+                        Text(model.name)
+                            .font(.title2)
+                            .lineLimit(2)
+
+                        Spacer()
+
+                        if(model.isSpicy) {
+                            Image("spicy-icon")
+                                .resizable()
+                                .frame(width: 35, height: 35)
                         }
                     }
                 }
-            }.navigationBarTitle("Animals")
+            }
         }
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
+#if DEBUG
+    struct ContentView_Previews: PreviewProvider {
+        static var previews: some View {
+            ContentView()
+        }
     }
-}
+#endif
