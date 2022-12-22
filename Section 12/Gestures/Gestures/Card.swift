@@ -11,6 +11,7 @@ struct Card: View {
 
     let tapped: Bool
     @State private var scale: CGFloat = 1
+    
 
     var body: some View {
 
@@ -21,12 +22,10 @@ struct Card: View {
                 .frame(width: 300, height: 300)
                 .cornerRadius(8)
                 .scaleEffect(scale)
-                .gesture(
-                    MagnificationGesture()
-                        .onChanged { value in
-                            scale = value.magnitude
-                        }
-                )
+                .gesture(MagnificationGesture()
+                    .onChanged { value in
+                    scale = value.magnitude
+                })
 
             Text("Card")
                 .font(.largeTitle)
