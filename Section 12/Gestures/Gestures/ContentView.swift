@@ -8,17 +8,27 @@
 import SwiftUI
 
 struct ContentView: View {
-    
+
     @State private var tapped: Bool = false
-    
+    @State private var dragState = CGSize.zero
+
     var body: some View {
-       Card(tapped: tapped)
+        Card(tapped: tapped)
+            .animation(.linear(duration: 0.5), value: dragState.animatableData.first)
+            .offset(x: dragState.width, y: dragState.height)
             .gesture(
-                TapGesture(count: 1)
-                    .onEnded({ Void in
-                        tapped.toggle()
-                    })
-            )
+            DragGesture()
+                .onChanged { value in
+                    dragState = value.translation
+                }.onEnded { _ in
+                    dragState = CGSize.zero
+                })
+            .gesture(
+            TapGesture(count: 1)
+                .onEnded({ _ in
+                tapped.toggle()
+            })
+        )
     }
 }
 
