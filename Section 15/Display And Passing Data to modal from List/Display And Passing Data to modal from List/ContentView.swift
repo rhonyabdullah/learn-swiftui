@@ -8,30 +8,29 @@
 import SwiftUI
 
 struct ContentView: View {
-
-    @State private var showModal: Bool = false
-    @State private var selectedFlag: String = ""
-    @State private var country: String = ""
-
+    
     private let flags = ["🇦🇫", "🇨🇨", "🇱🇾", "🇪🇭", "🇦🇪"]
+    @State private var viewModel = FlagViewModel()
 
     var body: some View {
         VStack {
-            Text("Selected country: \(country)")
+            Text("Selected country: \(viewModel.country)")
                 .multilineTextAlignment(.leading)
             List {
-                ForEach(0..<self.flags.count, id: \.hashValue) { index in
+                ForEach(flags, id: \.hashValue) { flag in
                     HStack {
-                        Text(flags[index])
+                        Text(flag)
                             .font(.custom("Arial", size: 50))
-                        Text("Country is: \(index)")
+                        
+                        Spacer()
+                    
                     }.onTapGesture {
-                        selectedFlag = flags[index]
-                        showModal.toggle()
+                        viewModel.flag = flag
+                        viewModel.showModal.toggle()
                     }
                 }
-            }.sheet(isPresented: $showModal) {
-                FlagDetailView(flag: selectedFlag, showModal: $showModal, country: $country)
+            }.sheet(isPresented: $viewModel.showModal) {
+                FlagDetailView(viewModel: $viewModel)
         }
         }
     }

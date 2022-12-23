@@ -12,6 +12,7 @@
 		6B06625729555DD1004FABD9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B06625629555DD1004FABD9 /* Assets.xcassets */; };
 		6B06625A29555DD1004FABD9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B06625929555DD1004FABD9 /* Preview Assets.xcassets */; };
 		6B06626129558CD6004FABD9 /* FlagDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B06626029558CD6004FABD9 /* FlagDetailView.swift */; };
+		6B06626329559E0D004FABD9 /* FlagViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B06626229559E0D004FABD9 /* FlagViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		6B06625629555DD1004FABD9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6B06625929555DD1004FABD9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		6B06626029558CD6004FABD9 /* FlagDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlagDetailView.swift; sourceTree = "<group>"; };
+		6B06626229559E0D004FABD9 /* FlagViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlagViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 				6B06626029558CD6004FABD9 /* FlagDetailView.swift */,
 				6B06625629555DD1004FABD9 /* Assets.xcassets */,
 				6B06625829555DD1004FABD9 /* Preview Content */,
+				6B06626229559E0D004FABD9 /* FlagViewModel.swift */,
 			);
 			path = "Display And Passing Data to modal from List";
 			sourceTree = "<group>";
@@ -140,6 +143,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B06626329559E0D004FABD9 /* FlagViewModel.swift in Sources */,
 				6B06625529555DCE004FABD9 /* ContentView.swift in Sources */,
 				6B06625329555DCE004FABD9 /* Display_And_Passing_Data_to_modal_from_ListApp.swift in Sources */,
 				6B06626129558CD6004FABD9 /* FlagDetailView.swift in Sources */,
