@@ -17,6 +17,7 @@
 		6B0662882955AFEE004FABD9 /* NSManagedObjectContextExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0662872955AFEE004FABD9 /* NSManagedObjectContextExtension.swift */; };
 		6B06628B2955EB9B004FABD9 /* AddOrderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B06628A2955EB9B004FABD9 /* AddOrderViewModel.swift */; };
 		6B06628E2955EF43004FABD9 /* AddOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B06628D2955EF43004FABD9 /* AddOrderView.swift */; };
+		6B06629029594F6D004FABD9 /* OrderListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B06628F29594F6D004FABD9 /* OrderListViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		6B0662872955AFEE004FABD9 /* NSManagedObjectContextExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSManagedObjectContextExtension.swift; sourceTree = "<group>"; };
 		6B06628A2955EB9B004FABD9 /* AddOrderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOrderViewModel.swift; sourceTree = "<group>"; };
 		6B06628D2955EF43004FABD9 /* AddOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOrderView.swift; sourceTree = "<group>"; };
+		6B06628F29594F6D004FABD9 /* OrderListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderListViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				6B06628A2955EB9B004FABD9 /* AddOrderViewModel.swift */,
+				6B06628F29594F6D004FABD9 /* OrderListViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -190,6 +193,7 @@
 				6B06627A2955AAB7004FABD9 /* Persistence.swift in Sources */,
 				6B0662882955AFEE004FABD9 /* NSManagedObjectContextExtension.swift in Sources */,
 				6B06627D2955AAB7004FABD9 /* HotCoffeeApp.xcdatamodeld in Sources */,
+				6B06629029594F6D004FABD9 /* OrderListViewModel.swift in Sources */,
 				6B0662732955AAB5004FABD9 /* ContentView.swift in Sources */,
 				6B0662852955AFCB004FABD9 /* CoreDataManager.swift in Sources */,
 				6B06628E2955EF43004FABD9 /* AddOrderView.swift in Sources */,

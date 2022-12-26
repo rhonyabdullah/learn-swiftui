@@ -8,17 +8,17 @@
 import Foundation
 
 class AddOrderViewModel {
+
+    private var coreData: CoreDataManager {
+        return CoreDataManager.shared
+    }
     
     var name: String = ""
     var type: String = ""
-    
-    var coreData: CoreDataManager {
-        return CoreDataManager.shared
-    }
 
     func saveOrder() {
         coreData.saveOrder(name: name, type: type)
-        
+
     }
-    
+
 }

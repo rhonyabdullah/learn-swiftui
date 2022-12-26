@@ -10,7 +10,8 @@ import SwiftUI
 struct AddOrderView: View {
 
     @State var viewModel = AddOrderViewModel()
-
+    @Binding var isDimissed: Bool
+    
     var body: some View {
         NavigationView {
             Group {
@@ -25,21 +26,22 @@ struct AddOrderView: View {
 
                     Button("Place Order") {
                         viewModel.saveOrder()
+                        isDimissed.toggle()
                     }.padding(8)
                         .foregroundColor(Color.white)
                         .background(Color.green)
                         .cornerRadius(8)
                 }
             }.padding()
-        }.navigationBarTitle("Add Order")
-        
+                .navigationBarTitle("Add Order")
+        }
     }
 }
 
 #if DEBUG
     struct AddOrderView_Previews: PreviewProvider {
         static var previews: some View {
-            AddOrderView()
+            AddOrderView(isDimissed: .constant(false))
         }
     }
 #endif
