@@ -35,8 +35,8 @@ struct URLImageDemoContentView: View {
             if let data = imageLoader.downloadData {
                 Image(uiImage: UIImage(data: data)!)
                     .resizable()
-                    .frame(width: 300, height: 300)
                     .padding(.top, 16)
+                    .aspectRatio(contentMode: .fit)
             } else {
                 Image(placeHolder)
                     .resizable()
