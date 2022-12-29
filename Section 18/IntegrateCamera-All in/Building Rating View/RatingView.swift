@@ -32,6 +32,18 @@ struct RatingView: View {
     }
 }
 
+struct LibraryContent : LibraryContentProvider {
+    
+    @LibraryContentBuilder
+    var views: [LibraryItem] {
+        LibraryItem(
+            RatingView(rating: .constant(3)),
+            title: "Rating Control",
+            category: .control
+        )
+    }
+}
+
 struct RatingView_Previews: PreviewProvider {
     static var previews: some View {
         RatingView(rating: .constant(3))
