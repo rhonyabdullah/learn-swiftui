@@ -23,7 +23,6 @@ struct WeatherListScreen: View {
     @State private var activeShee: Sheets?
 
     var body: some View {
-
         List {
             ForEach(store.weatherList, id: \.id) { weather in
                 WeatherCell(weather: weather)
@@ -33,15 +32,15 @@ struct WeatherListScreen: View {
             .sheet(item: $activeShee, content: { (item) in
             switch item {
             case.addNewCity: AddCityScreen().environmentObject(store)
-            case .settings: SettingsScreen()
+            case .settings: SettingsScreen().environmentObject(store)
             }
         }) .navigationBarItems(
             leading: Button(action: { activeShee = Sheets.settings }) {
                 Image(systemName: "gearshape")
             },
             trailing: Button(action: { activeShee = .addNewCity }, label: {
-                    Image(systemName: "plus")
-                }
+                Image(systemName: "plus")
+            }
             )
         ).navigationTitle("Cities").embedInNavigationView()
 
@@ -58,6 +57,7 @@ struct WeatherListScreen_Previews: PreviewProvider {
 
 struct WeatherCell: View {
 
+    @EnvironmentObject var store: Store
     let weather: WeatherViewModel
 
     var body: some View {
@@ -75,11 +75,15 @@ struct WeatherCell: View {
                 }
             }
             Spacer()
-            
+
             URLImage(url: Constants.Urls.weatherUrlAsStringByIcon(icon: weather.icon))
                 .frame(width: 50, height: 50)
 
-            Text("\(Int(weather.temperature)) K")
+            let temperature = Int(weather.getTemperatureByUnit(
+                unit: store.selectedUnit)
+            )
+            let displayText = String(store.selectedUnit.displayText.prefix(1))
+            Text("\(temperature) \(displayText)")
         }
             .padding()
             .background(Color(#colorLiteral(red: 0.9133135676, green: 0.9335765243, blue: 0.98070997, alpha: 1)))
