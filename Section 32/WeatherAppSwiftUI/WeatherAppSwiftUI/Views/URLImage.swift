@@ -15,7 +15,7 @@ struct URLImage: View {
     
     @ObservedObject var imageLoader = ImageLoader()
     
-    init(url: String, placeholder: String = "placeholder") {
+    init(url: String, placeholder: String = "timelapse") {
         self.url = url
         self.placeholder = placeholder
         self.imageLoader.downloadImage(url: self.url)

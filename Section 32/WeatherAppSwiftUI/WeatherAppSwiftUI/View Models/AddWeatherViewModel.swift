@@ -16,14 +16,10 @@ class AddWeatherViewModel: ObservableObject {
         service = Webservice()
     }
 
-    var city: String?
+    var city: String = ""
 
     func save(completion: @escaping (WeatherViewModel) -> Void) {
-        guard let city = city else {
-            os_log("City not found")
-            return
-        }
-
+    
         service.getWeatherByCity(city: city) { (result) in
 
             switch result {
