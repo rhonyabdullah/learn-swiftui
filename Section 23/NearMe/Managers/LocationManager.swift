@@ -11,10 +11,11 @@ import MapKit
 class LocationManager: NSObject, ObservableObject {
 
     private let locationManager = CLLocationManager()
-    @Published var location: CLLocation? = nil
+    var location: CLLocation? = nil
 
     override init() {
         super.init()
+        locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.distanceFilter = kCLDistanceFilterNone
         locationManager.requestWhenInUseAuthorization()

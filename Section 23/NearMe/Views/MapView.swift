@@ -11,6 +11,8 @@ import UIKit
 
 struct MapView: UIViewRepresentable {
 
+    let landmarks: [Landmark]
+
     func makeCoordinator() -> Coordinator {
         return Coordinator(self)
     }
@@ -23,7 +25,13 @@ struct MapView: UIViewRepresentable {
     }
 
     func updateUIView(_ uiView: MKMapView, context: UIViewRepresentableContext<MapView>) {
+        updateAnnotations(from: uiView)
+    }
 
+    private func updateAnnotations(from mapView: MKMapView) {
+        mapView.removeAnnotations(mapView.annotations)
+        let annotations = landmarks.map(LandmarkAnnotation.init)
+        mapView.addAnnotations(annotations)
     }
 
 }
