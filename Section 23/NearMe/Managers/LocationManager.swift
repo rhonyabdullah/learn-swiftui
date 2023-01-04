@@ -11,7 +11,7 @@ import MapKit
 class LocationManager: NSObject, ObservableObject {
 
     private let locationManager = CLLocationManager()
-    var location: CLLocation? = nil
+    @Published var location: CLLocation? = nil
 
     override init() {
         super.init()
@@ -20,6 +20,14 @@ class LocationManager: NSObject, ObservableObject {
         locationManager.distanceFilter = kCLDistanceFilterNone
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
+    }
+    
+    func startLocationUpdate() {
+        locationManager.startUpdatingLocation()
+    }
+    
+    func stopLocationUpdate() {
+        locationManager.stopUpdatingLocation()
     }
 
 }

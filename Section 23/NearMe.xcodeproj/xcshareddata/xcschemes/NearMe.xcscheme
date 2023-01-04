@@ -51,7 +51,7 @@
          </BuildableReference>
       </BuildableProductRunnable>
       <LocationScenarioReference
-         identifier = "../../gpxgenerator_path (1).gpx"
+         identifier = "../../SG_changi.gpx"
          referenceType = "0">
       </LocationScenarioReference>
    </LaunchAction>

@@ -8,7 +8,7 @@
 import Foundation
 import MapKit
 
-struct Landmark {
+struct Landmark: Identifiable {
 
     let placemark: MKPlacemark
 
@@ -29,3 +29,12 @@ struct Landmark {
     }
 
 }
+
+#if DEBUG
+    extension Landmark {
+        static let preview: [Landmark] = [
+            Landmark(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: 1.3452403806144473, longitude: 103.98323903104303)))
+        ]
+
+    }
+#endif

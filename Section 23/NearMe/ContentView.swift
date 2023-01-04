@@ -7,77 +7,100 @@
 
 import SwiftUI
 import MapKit
-import OSLog
+
+enum DisplayType: Identifiable {
+    var id: Self { self }
+    case map
+    case list
+}
 
 struct ContentView: View {
 
     private var locationManager = LocationManager()
     @State private var search: String = ""
-    @State private var landmarks = [Landmark]()
+
     @State private var tapped: Bool = false
+    @StateObject private var viewModel = PlaceListViewModel()
+    @State private var userTrackingMode: MapUserTrackingMode = .follow
+    @State private var displayType: DisplayType = .map
+    @State private var selectedCategory: String = ""
+    @State private var isDragging = false
 
     var body: some View {
-        ZStack(alignment: .top) {
-            MapView(landmarks: landmarks)
+        VStack {
 
-            TextField("Search", text: $search, onEditingChanged: { _ in }) {
-                getNearByLandmarks()
-            }.textFieldStyle(.roundedBorder)
+            TextField("Search", text: $search, onCommit: {
+                searchLandmark()
+            }).textFieldStyle(.roundedBorder)
                 .padding([.top], 56)
                 .padding([.leading, .trailing], 16)
                 .textInputAutocapitalization(.never)
                 .autocorrectionDisabled(true)
 
-            PlaceListView(landmarks: landmarks, onTap: {
-                tapped.toggle()
-            }).animation(.spring())
-                .offset(y: calculateOffset())
+            LandmarkCategoryView(callback: { selectedCategory in
+                search = selectedCategory
+                searchLandmark()
+            }).padding(.leading, 16)
+
+            Picker("Display Typ", selection: $displayType) {
+                Text("Map").tag(DisplayType.map)
+                Text("List").tag(DisplayType.list)
+            }.pickerStyle(.segmented)
+                .padding([.leading, .trailing], 16)
+
+            if displayType == .map {
+                Map(
+                    coordinateRegion: getRegion(),
+                    interactionModes: .all,
+                    showsUserLocation: true,
+                    userTrackingMode: $userTrackingMode,
+                    annotationItems: viewModel.landmarks
+                ) { landmark in
+                    MapAnnotation(coordinate: landmark.coordinate, content: {
+                        VStack() {
+                            Text(landmark.name)
+                                .font(.footnote)
+                                .foregroundColor(Color.cyan)
+                                .padding(0)
+                            Image(systemName: "mappin.and.ellipse")
+                                .foregroundColor(Color.orange)
+                                .frame(width: 30, height: 30)
+                        }
+                    })
+                }.gesture(DragGesture().onChanged({ _ in
+                    isDragging = true
+                })).overlay(alignment: .bottom, content: {
+                    isDragging ? AnyView(
+                        RecenterButton(onTapped: {
+                            viewModel.startLocationUpdate()
+                            isDragging = false
+                        }).padding(.bottom, 16))
+                    : AnyView(EmptyView())
+                })
+
+            } else if displayType == .list {
+                LandmarkListView(landmarks: viewModel.landmarks)
+            }
 
         }.ignoresSafeArea()
     }
 
-    private func getNearByLandmarks() {
+    private func getRegion() -> Binding<MKCoordinateRegion> {
 
-
-        guard let location = locationManager.location else {
-            return
+        guard let coordinate = viewModel.currentLocation else {
+            return .constant(MKCoordinateRegion.defaultRegion)
         }
 
-        let request = MKLocalSearch.Request()
-        request.naturalLanguageQuery = search
-        request.region = MKCoordinateRegion(
-            center: location.coordinate,
-            latitudinalMeters: 1000,
-            longitudinalMeters: 1000
-        )
-
-        let search = MKLocalSearch(request: request)
-        search.start { (response, error) in
-            os_log("response received")
-            guard let response = response, error == nil else {
-                return
-            }
-
-            let mapItem = response.mapItems
-            self.landmarks = mapItem.map {
-                os_log("item: \($0)")
-                return Landmark(placemark: $0.placemark)
-            }
-        }
-
+        return .constant(MKCoordinateRegion(
+            center: coordinate,
+            span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+        ))
     }
 
-    func calculateOffset() -> CGFloat {
-
-        if self.landmarks.count > 0 && !self.tapped {
-            return UIScreen.main.bounds.size.height - UIScreen.main.bounds.size.height / 4
-        } else if self.tapped {
-            return 100
-        } else {
-            return UIScreen.main.bounds.size.height
-        }
-
+    private func searchLandmark() {
+        viewModel.searchLandmarks(search: search)
     }
+
 }
 
 struct ContentView_Previews: PreviewProvider {
